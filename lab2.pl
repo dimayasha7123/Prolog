@@ -1,4 +1,4 @@
-%1
+% 1
 
 % event(X, Y, Z), где 
 %     X - название государства, где произошло событие,
@@ -25,4 +25,83 @@ event('Egypt',      6,  'The conquest of egypt by the Persians').
 % все события по стране
 % event('Egypt', YEAR, EVENT).
 
-eventsFromTo(FROM, TO) :- event(PLACE, YEAR, EVENT), YEAR >= FROM.
+% события с какого-то по какой-то век включительно
+eventFromTo(FROM, TO, COUNTRY, EVENT) :- event(COUNTRY, YEAR, EVENT), YEAR =< FROM, YEAR >= TO.
+% eventFromTo(18, 15, COUNTRY, EVENT).
+
+% век становления государства
+appearance(COUNTRY, YEAR) :- event(COUNTRY, YEAR, 'Appearance of the first states').
+%appearance('China', YEAR).
+
+% 2
+
+river('Amur', 4416, 350, 1855, 'Yablonevyi hrebet', 'Tatarskii proliv').
+river('Lena', 4400, 488, 2490, 'Baikalskii hrebet', 'More Laptevyh').
+river('Ob', 4070, 400, 2990, 'Predgorya Altaya', 'Karskoe more').
+river('Irtysh', 4248, 323, 1643, 'Kitai', 'Ob').
+river('Enisei', 3487, 600, 2580, 'Vostochnyi Sayan', 'Karskoe more').
+river('Volga', 3530, 255, 1360, 'Valdaiskaya vozvyshennost', 'Kaspiiskoe more').
+river('Kolyma', 2129, 44, 643, 'Hrebet Cherskogo', 'Vostochno  sibirskoe more').
+river('Ural', 2428, 54, 231, 'Uzhnyi Ural', 'Kaspiiskoe more').
+river('Don', 2200, 45, 504, 'Sredne-russkaya vozvyshennost', 'Azovskoe more').
+river('Kama', 1805, 130, 507, 'Verhne  Kamskaya vozvyshennost', 'Volga').
+river('Pechora', 1809, 130, 322, 'Severnyi Ural', 'Barencevo more').
+river('Angara', 1779, 62, 1039, 'Baikal', 'Enisei').
+river('Selenga', 1024, 14, 447, 'Mongoliya', 'Baikal').
+river('Kuban', 870, 11, 58, 'Kavkaz', 'Azovskoe more').
+river('Neva', 74, 42, 281, 'Ladozhskoe ozero', 'Baltiiskoe more').
+
+% river(X, _, _, _, _, 'Azovskoe more').
+% river(X, _, _, _, 'Valdaiskaya vozvyshennost', _).
+% river(X, _, _, _, _, 'Kaspiiskoe more').
+% river(RIVER, LEN, _, _, _, _), river('Kama', KAMALEN, _, _, _, _), LEN < KAMALEN.
+% river(RIVER, LEN, _, _, _, _), river('Irtysh', IRTYSHLEN, _, _, _, _), LEN > IRTYSHLEN.
+% river('Kama', LEN, STOK, SQUARE, ISTOK, VPADAET).
+
+% 3
+
+man('John').
+man('Bob').
+man('Hank').
+man('Harry').
+
+woman('Marry').
+woman('Ann').
+
+describes('Marry', 'Nice').
+describes('John', 'Kind').
+describes('John', 'Manly').
+describes('John', 'Strong').
+
+describes('Hank', 'Manly').
+describes('Bob', 'Rich').
+describes('Harry', 'Kind').
+
+
+womanLike(X, Y) :-  woman(X), 
+                    man(Y), 
+                    describes(Y, 'Kind'), 
+                    ((manLike(Y, X)); describes(Y, 'Strong')).
+
+manLike(X, Y) :- man(X), woman(Y), describes(Y, 'Nice').
+
+happy(X) :- describes(X, 'Rich'); womanLike(_, X).
+
+% happy('John').
+% womanLike(X, Y).
+
+% 5
+
+student('Antonov', 5, 5, 5).
+student('Bobrov', 5, 3, 2).
+student('Vyatkin', 5, 5, 5).
+student('Dedov', 4, 4, 4).
+student('Emelyanova', 5, 5, 5).
+student('Krotov', 2, 3, 3).
+student('Marin', 5, 4, 5).
+student('Novikov', 2, 3, 2).
+student('Podlesnyi', 2, 3, 3).
+student('Polezhaev', 5, 5, 5).
+student('Sosnin', 4, 4, 4).
+
+
