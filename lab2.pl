@@ -90,6 +90,19 @@ happy(X) :- describes(X, 'Rich'); womanLike(_, X).
 % happy('John').
 % womanLike(X, Y).
 
+% 4
+
+creature('Muska', 'cat', 'brown').
+creature('Strelka', 'cat', 'black').
+creature('Murka', 'cat', 'red').
+creature('Reks', 'dog', 'spotted').
+creature('Drujok', 'dog', 'red').
+creature('Muxtar', 'dog', 'white').
+
+% перейти на свойства мейби
+
+%own().
+
 % 5
 
 student('Antonov', 5, 5, 5).
@@ -103,5 +116,16 @@ student('Novikov', 2, 3, 2).
 student('Podlesnyi', 2, 3, 3).
 student('Polezhaev', 5, 5, 5).
 student('Sosnin', 4, 4, 4).
+
+good(X) :- student(X, M1, M2, M3), M1 =:= 5, M2 =:= 5, M3 =:= 5.
+bad(X) :- student(X, M1, M2, M3), (M1 =:= 2; M2 =:= 2; M3 =:= 2).
+math(X) :- student(X, M1, M2, _), M1 > 3, M2 > 3.
+
+% good('Novikov').
+% good(X).
+% bad(X).
+% math('Sosnin').
+% student(X, M, _, _), M =:= 2.
+
 
 
