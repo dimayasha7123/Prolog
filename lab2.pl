@@ -77,7 +77,6 @@ describes('Hank', 'Manly').
 describes('Bob', 'Rich').
 describes('Harry', 'Kind').
 
-
 womanLike(X, Y) :-  woman(X), 
                     man(Y), 
                     describes(Y, 'Kind'), 
@@ -92,16 +91,68 @@ happy(X) :- describes(X, 'Rich'); womanLike(_, X).
 
 % 4
 
-creature('Muska', 'cat', 'brown').
-creature('Strelka', 'cat', 'black').
-creature('Murka', 'cat', 'red').
-creature('Reks', 'dog', 'spotted').
-creature('Drujok', 'dog', 'red').
-creature('Muxtar', 'dog', 'white').
+creature('Muska').
+creature('Strelka').
+creature('Murka').
+creature('Reks').
+creature('Drujok').
+creature('Muxtar').
 
-% перейти на свойства мейби
+human('Anatolii').
+human('Nikolai').
+human('Ivan').
 
-%own().
+type('Muska', 'cat').
+type('Strelka', 'cat').
+type('Murka', 'cat').
+type('Reks', 'dog').
+type('Drujok', 'dog').
+type('Muxtar', 'dog').
+
+colour('Muska', 'brown').
+colour('Strelka', 'black').
+colour('Murka', 'red').
+colour('Reks', 'spotted').
+colour('Drujok', 'red').
+colour('Muxtar', 'white').
+
+own(H, C) :- 
+    human(H),
+    H = 'Anatolii',
+    creature(C),
+    colour(C, CLR),
+    (CLR = 'black'; CLR = 'brown').
+
+own(H, C) :-
+    human(H),
+    H = 'Nikolai',
+    creature(C),
+    type(C, 'dog'),
+    colour(C, CLR),
+    CLR \= 'white',
+    not(own('Anatolii', C)). 
+
+pedigree(C) :- 
+    creature(C),
+    own(H, C),
+    (H = 'Anatolii'; H = 'Nikolai').
+
+own(H, C) :-
+    human(H),
+    H = 'Ivan',
+    creature(C),
+    C = 'Murka',
+    not(own('Nikolai', 'Muska')),
+    not(pedigree('Muxtar')).
+
+% не работает, блин
+
+noOwner(C) :- 
+    not(own(H, C)),
+    human(H),
+    creature(C).
+
+% имеет ли смысл creature(C) и human(H) ???
 
 % 5
 
@@ -126,6 +177,3 @@ math(X) :- student(X, M1, M2, _), M1 > 3, M2 > 3.
 % bad(X).
 % math('Sosnin').
 % student(X, M, _, _), M =:= 2.
-
-
-
