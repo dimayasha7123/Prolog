@@ -148,9 +148,8 @@ own(H, C) :-
 % не работает, блин
 
 noOwner(C) :- 
-    not(own(H, C)),
-    human(H),
-    creature(C).
+    creature(C),
+    not(own(H, C)).
 
 % имеет ли смысл creature(C) и human(H) ???
 
