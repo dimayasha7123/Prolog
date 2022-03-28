@@ -11,13 +11,7 @@
 
 % 2
 
-surname('Borisov').
-surname('Ivanov').
-surname('Semenov').
 
-job('Slesar').
-job('Tokar').
-job('Svarschik').
 
 sisterProp('Has').
 sisterProp('Has no').
