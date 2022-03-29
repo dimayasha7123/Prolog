@@ -9,17 +9,4 @@
 % 09 - NOPE
 % 10 - NOPE
 
-% 6
 
-% number('X').
-% number('Y').
-% number('Z').
-% number('T').
-
-less('X', 'Y').
-less('X', 'T').
-less('Z', 'T').
-
-over('Y', 'Z').
-over('Y', 'T').
-over('Z', 'X').
