@@ -39,8 +39,8 @@ check_palindrom(A):- classic_reverse(A, R), A == R.
 % task6 - получение элемента по индексу
 
 get_by_index(I, _, _):-
-    I < 0, !, write("Index out of range!"), nl.
-get_by_index(0, [H|_], X):-!.
+    I < 0, !, write("Index out of range!"), nl, fail.
+get_by_index(0, [H|_], H):-!.
 get_by_index(I, [_|T], X):-
    I1 is I - 1,
    get_by_index(I1, T, X).
